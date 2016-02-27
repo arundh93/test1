@@ -1,9 +1,10 @@
-FROM microsoft/aspnet:1.0.0-beta8-coreclr
- 
-ADD . /project
- 
-WORKDIR /project
- 
+FROM microsoft/aspnet:1.0.0-rc1-update1-coreclr
+
+COPY . /app
+WORKDIR /app
 RUN ["dnu", "restore"]
- 
-ENTRYPOINT ["dnx", "web", "--server.urls", "http://0.0.0.0:5000"]
+
+EXPOSE 5000
+WORKDIR /app/src/TestApplication
+ENTRYPOINT ["dnx", "web"]
+
